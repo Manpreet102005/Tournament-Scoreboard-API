@@ -8,5 +8,4 @@ import java.util.List;
 @Repository
 public interface PlayerRepository extends JpaRepository<Player,Integer> {
     boolean existsByName(String name);
-    List<Player> findAllByOrderByScoreDesc();
 }

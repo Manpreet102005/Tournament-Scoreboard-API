@@ -14,11 +14,9 @@ import java.util.List;
 @Service
 public class PlayerService {
     private final PlayerRepository playerRepository;
-    private final TeamRepository teamRepository;
 
-    public PlayerService(PlayerRepository playerRepository,TeamRepository teamRepository) {
+    public PlayerService(PlayerRepository playerRepository) {
         this.playerRepository = playerRepository;
-        this.teamRepository= teamRepository;
     }
 
     public Player getById(Integer id) {

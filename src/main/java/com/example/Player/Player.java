@@ -19,7 +19,7 @@ public class Player {
     @JoinColumn(name="team_id")
     private Team team;
     public Player(){};
-    public Player(String name, Integer score,Team team) {
+    public Player(String name,Team team) {
         this.name = name;
         this.team=team;
     }

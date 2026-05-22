@@ -51,4 +51,9 @@ public class UniversalController {
     public ResponseEntity<String> handle(MatchScheduledInPastException e){
         return ResponseEntity.status(400).body(e.getMessage());
     }
+
+    @ExceptionHandler(TeamNotPartOfMatchException.class)
+    public ResponseEntity<String> handle(TeamNotPartOfMatchException e){
+        return ResponseEntity.status(404).body(e.getMessage());
+    }
 }

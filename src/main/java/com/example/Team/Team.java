@@ -19,6 +19,8 @@ public class Team {
     @Column(unique=true)
     private String teamName;
 
+    private Integer totalScore=0;
+
     @JsonIgnore
     @OneToMany(mappedBy = "team")
     private List<Player> players=new ArrayList<>();
@@ -47,4 +49,8 @@ public class Team {
     public void setPlayers(List<Player> players) {
         this.players = players;
     }
+
+    public Integer getTotalScore() { return totalScore; }
+
+    public void setTotalScore(Integer totalScore) { this.totalScore = totalScore; }
 }

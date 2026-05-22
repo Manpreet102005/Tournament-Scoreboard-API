@@ -2,17 +2,11 @@ package com.example.Match;
 
 import com.example.Team.Team;
 import com.example.Team.TeamRepository;
-import com.example.exceptions.MatchNotFoundException;
-import com.example.exceptions.MatchScheduledInPastException;
-import com.example.exceptions.MatchTitleAlreadyExists;
-import com.example.exceptions.TeamNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.exceptions.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Scanner;
 @Service
 public class MatchService {
 
@@ -67,5 +61,21 @@ public class MatchService {
         match.setMatchDateTime(newDateTime);
         matchRepository.save(match);
         return ResponseEntity.ok().body("Match Rescheduled Successfully.");
+    }
+
+    public ResponseEntity<String> updateTeamScore(Integer matchId, Integer teamId, Integer score) {
+        Match match=matchRepository.findById(matchId).orElseThrow(()->
+                new MatchNotFoundException(matchId));
+        if(match.getTeamA().getTeamId().equals(teamId)){
+            match.setTeamAScore(score);
+        }
+        else if(match.getTeamB().getTeamId().equals(teamId)){
+            match.setTeamBScore(score);
+        }
+        else {
+            throw new TeamNotPartOfMatchException(teamId,matchId);
+        }
+        matchRepository.save(match);
+        return ResponseEntity.ok().body("Team Score Updated Successfully");
     }
 }

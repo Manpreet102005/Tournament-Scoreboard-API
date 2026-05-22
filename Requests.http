@@ -1,0 +1,28 @@
+### GET request to example server
+GET http://localhost:8081/player
+
+###
+POST http://localhost:8081/player
+Content-Type: application/json
+
+{
+  "name": "shirooo", "score":85
+}
+###
+GET http://localhost:8081/player/4
+###
+DELETE http://localhost:8081/player/4
+###
+PUT http://localhost:8081/player/1/70
+###
+POST http://localhost:8081/team
+content-type: application/json
+
+{
+  "teamName": "Star Warriors"
+}
+###
+PUT http://localhost:8081/player/5/team/1
+###
+GET http://localhost:8081/team
+###

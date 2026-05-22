@@ -66,6 +66,9 @@ public class MatchService {
     public ResponseEntity<String> updateTeamScore(Integer matchId, Integer teamId, Integer score) {
         Match match=matchRepository.findById(matchId).orElseThrow(()->
                 new MatchNotFoundException(matchId));
+        if(score<0 || score>100){
+            throw new InvalidScoreException();
+        }
         if(match.getTeamA().getTeamId().equals(teamId)){
             match.setTeamAScore(score);
         }

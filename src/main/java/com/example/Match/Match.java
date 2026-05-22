@@ -55,10 +55,6 @@ public class Match {
         this.matchTitle = matchTitle;
     }
 
-    public String getMatchdateTime(){
-        return matchDateTime.toString();
-    }
-
     public Team getTeamA() {
         return teamA;
     }

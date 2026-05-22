@@ -44,7 +44,7 @@ public class MatchController {
         return matchService.addMatch(match,teamAId,teamBId);
     }
 
-    @PostMapping("/{matchId}/{newDateTime}")
+    @PostMapping("reschedule/{matchId}/{newDateTime}")
     public ResponseEntity<String> reScheduleMatch(@PathVariable Integer matchId,@PathVariable LocalDateTime newDateTime){
         return matchService.rescheduleMatch(matchId,newDateTime);
     }

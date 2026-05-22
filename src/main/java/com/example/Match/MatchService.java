@@ -27,6 +27,9 @@ public class MatchService {
     }
 
     public ResponseEntity<String> addMatch(Match match, Integer teamAId, Integer teamBId){
+        if(match.getMatchDateTime().isBefore(LocalDateTime.now())){
+            throw new MatchScheduledInPastException();
+        }
         if(matchRepository.existsByMatchTitle(match.getMatchTitle())){
             throw new MatchTitleAlreadyExists(match.getMatchTitle());
         }

@@ -1,4 +1,4 @@
-#Tournament Scoreboard API
+# Tournament Scoreboard API
 
 A REST API built with Spring Boot and MySQL to manage tournament data including teams, players, matches, and live scoreboards.
 

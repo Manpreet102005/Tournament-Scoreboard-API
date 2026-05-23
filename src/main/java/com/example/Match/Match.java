@@ -30,6 +30,9 @@ public class Match {
     @JoinColumn(name="team_b_id")
     private Team teamB;
 
+    private String teamAName;
+    private String teamBName;
+
     private Integer teamAScore=0;
     private Integer teamBScore=0;
 
@@ -37,11 +40,9 @@ public class Match {
     private MatchStatus matchStatus=MatchStatus.SCHEDULED;
 
     public Match(){}
-    public Match(String matchTitle, Team teamA, Team teamB, LocalDateTime matchDateTime){
+    public Match(String matchTitle,LocalDateTime matchDateTime){
         this.matchTitle=matchTitle;
         this.matchDateTime=matchDateTime;
-        this.teamA=teamA;
-        this.teamB=teamB;
     }
 
     public Integer getMatchId() {
@@ -103,4 +104,12 @@ public class Match {
     public void setMatchStatus(MatchStatus matchStatus) {
         this.matchStatus = matchStatus;
     }
+
+    public String getTeamAName() {return teamAName;}
+
+    public void setTeamAName(String teamAName) { this.teamAName = teamAName;}
+
+    public String getTeamBName() {return teamBName;}
+
+    public void setTeamBName(String teamBName) { this.teamBName = teamBName;}
 }

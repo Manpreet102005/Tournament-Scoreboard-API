@@ -45,21 +45,29 @@ public class MatchService {
 
         match.setTeamA(teamA);
         match.setTeamB(teamB);
+        match.setTeamAName(teamA.getTeamName());
+        match.setTeamBName(teamB.getTeamName());
         matchRepository.save(match);
         return ResponseEntity.ok().body("Match Added Successfully. Assigned Match Id: "+match.getMatchId());
     }
 
     public ResponseEntity<String> removeMatch(Integer id){
-        getMatchById(id);
+        Match match =getMatchById(id);
+        if(!match.getMatchStatus().equals(MatchStatus.SCHEDULED)){
+            throw new MatchStatusException("ONGOING/COMPLETED matches can not be deleted. Current Status: "+match.getMatchStatus());
+        }
         matchRepository.deleteById(id);
         return ResponseEntity.ok().body("Match with id: "+id+" Removed Successfully");
     }
 
     public ResponseEntity<String> rescheduleMatch(Integer matchId, LocalDateTime newDateTime) {
-        Match match=getMatchById(matchId);
-
         if(newDateTime.isBefore(LocalDateTime.now())){
             throw new MatchScheduledInPastException();
+        }
+        Match match=getMatchById(matchId);
+        if(!match.getMatchStatus().equals(MatchStatus.SCHEDULED)){
+            throw new MatchStatusException("ONGOING/COMPLETED matches can not be rescheduled. Current Status: "+match.getMatchStatus());
+
         }
         match.setMatchDateTime(newDateTime);
         matchRepository.save(match);
@@ -117,7 +125,7 @@ public class MatchService {
             teamA.setWins(teamA.getWins()+1);
         }
         else if(match.getTeamAScore()<match.getTeamBScore()){
-            teamA.setWins(teamB.getWins()+1);
+            teamB.setWins(teamB.getWins()+1);
         }
         else{
             teamA.setDraws(teamA.getDraws()+1);

@@ -11,15 +11,13 @@ import java.util.List;
 @Service
 public class ScoreboardService {
     private final TeamRepository teamRepository;
-    private final MatchRepository matchRepository;
 
-    public ScoreboardService(TeamRepository teamRepository,MatchRepository matchRepository) {
+    public ScoreboardService(TeamRepository teamRepository) {
         this.teamRepository=teamRepository;
-        this.matchRepository = matchRepository;
     }
 
-    public List<TeamRecord> showScoreboard() {
-        List<TeamRecord> scoreboardList=new ArrayList<>();
+    public List<TeamDTO> showScoreboard() {
+        List<TeamDTO> scoreboardList=new ArrayList<>();
         List<Team> teamList=teamRepository.findAll();
         teamList.sort(
                 (a,b)->Integer.compare(b.getTotalScore(),a.getTotalScore())
@@ -27,14 +25,15 @@ public class ScoreboardService {
 
         for(int i=0;i<teamList.size();i++){
             Team team=teamList.get(i);
+            Double winRatio= team.getMatchesPlayed()==0?0:(double)team.getWins()/team.getMatchesPlayed()*100;
             scoreboardList.add(
-                    new TeamRecord(
-                            i+1,
+                    new TeamDTO(i+1,
                             team.getTeamId(),
                             team.getTeamName(),
                             team.getTotalScore(),
                             team.getMatchesPlayed(),
-                            team.getWins()
+                            team.getWins(),
+                            winRatio
                     )
             );
         }

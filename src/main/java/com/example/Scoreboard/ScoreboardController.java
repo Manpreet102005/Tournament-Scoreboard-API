@@ -13,7 +13,7 @@ public class ScoreboardController {
         this.scoreboardService=scoreboardService;
     }
     @GetMapping()
-    public List<TeamRecord> showScoreboard(){
+    public List<TeamDTO> showScoreboard(){
         return scoreboardService.showScoreboard();
     }
 

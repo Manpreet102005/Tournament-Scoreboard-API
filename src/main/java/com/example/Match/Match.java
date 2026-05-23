@@ -33,6 +33,7 @@ public class Match {
     private Integer teamAScore=0;
     private Integer teamBScore=0;
 
+    @Enumerated(EnumType.STRING)
     private MatchStatus matchStatus=MatchStatus.SCHEDULED;
 
     public Match(){}

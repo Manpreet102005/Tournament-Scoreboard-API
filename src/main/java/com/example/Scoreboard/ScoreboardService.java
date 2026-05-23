@@ -1,7 +1,7 @@
 package com.example.Scoreboard;
 
-import com.example.Match.MatchRepository;
 import com.example.Team.Team;
+import com.example.Team.TeamDTO;
 import com.example.Team.TeamRepository;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.example.Scoreboard;
+package com.example.Team;
 
 class TeamDTO {
     private Integer rank;

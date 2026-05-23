@@ -22,4 +22,36 @@ public class MatchDTO {
         this.teamBScore = teamBScore;
         this.matchStatus = matchStatus;
     }
+
+    public Integer getMatchId() {
+        return matchId;
+    }
+
+    public String getMatchTitle() {
+        return matchTitle;
+    }
+
+    public LocalDateTime getMatchDateTime() {
+        return matchDateTime;
+    }
+
+    public String getTeamAName() {
+        return teamAName;
+    }
+
+    public String getTeamBName() {
+        return teamBName;
+    }
+
+    public Integer getTeamAScore() {
+        return teamAScore;
+    }
+
+    public Integer getTeamBScore() {
+        return teamBScore;
+    }
+
+    public MatchStatus getMatchStatus() {
+        return matchStatus;
+    }
 }

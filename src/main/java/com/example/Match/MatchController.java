@@ -20,13 +20,13 @@ public class MatchController {
     }
 
     @GetMapping
-    public List<Match> getAllMatches(){
+    public List<MatchDTO> getAllMatches(){
         return matchService.getAllMatches();
     }
 
     @GetMapping("/{id}")
-    public Match getMatchById(@PathVariable Integer id){
-        return matchService.getMatchById(id);
+    public MatchDTO getMatchById(@PathVariable Integer id){
+        return matchService.getMatchDTOById(id);
     }
 
     @DeleteMapping("/{matchId}")

@@ -19,4 +19,31 @@ public class TeamDTO {
         this.winRatio=winRatio;
     }
 
+    public Integer getRank() {
+        return rank;
+    }
+
+    public Integer getTeamId() {
+        return teamId;
+    }
+
+    public String getTeamName() {
+        return teamName;
+    }
+
+    public Integer getTotalScore() {
+        return totalScore;
+    }
+
+    public Integer getMatchesPlayed() {
+        return matchesPlayed;
+    }
+
+    public Integer getWins() {
+        return wins;
+    }
+
+    public Double getWinRatio() {
+        return winRatio;
+    }
 }

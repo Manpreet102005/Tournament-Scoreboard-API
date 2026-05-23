@@ -21,11 +21,35 @@ public class MatchService {
         this.matchRepository = matchRepository;
     }
 
-    public List<Match> getAllMatches() {
-        return matchRepository.findAll();
+    public List<MatchDTO> getAllMatches() {
+        return matchRepository.findAll()
+                .stream().map(match->new MatchDTO(
+                        match.getMatchId(),
+                        match.getMatchTitle(),
+                        match.getMatchDateTime(),
+                        match.getTeamAName(),
+                        match.getTeamBName(),
+                        match.getTeamAScore(),
+                        match.getTeamBScore(),
+                        match.getMatchStatus()
+                ))
+                .toList();
     }
 
-    public Match getMatchById(Integer id) {
+    public MatchDTO getMatchDTOById(Integer id) {
+        Match match=matchRepository.findById(id).orElseThrow(()->new MatchNotFoundException(id));
+        return new MatchDTO(
+                match.getMatchId(),
+                match.getMatchTitle(),
+                match.getMatchDateTime(),
+                match.getTeamAName(),
+                match.getTeamBName(),
+                match.getTeamAScore(),
+                match.getTeamBScore(),
+                match.getMatchStatus()
+        );
+    }
+    private Match getMatchById(Integer id){
         return matchRepository.findById(id).orElseThrow(()->new MatchNotFoundException(id));
     }
 
@@ -138,5 +162,6 @@ public class MatchService {
         matchRepository.save(match);
         return ResponseEntity.ok().body("Match with id: "+matchId+" is now COMPLETED ");
     }
+
 }
 

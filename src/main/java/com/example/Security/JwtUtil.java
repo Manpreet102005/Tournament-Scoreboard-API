@@ -1,15 +1,14 @@
-package com.example.User;
+package com.example.Security;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import java.nio.charset.StandardCharsets;
+import org.springframework.stereotype.Component;
 import java.security.Key;
 import java.util.Date;
-
+@Component
 public class JwtUtil {
     @Value("$jwt.secret")
     String key;

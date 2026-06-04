@@ -44,4 +44,19 @@ public class AuthService {
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error","Invalid Credentials"));
     }
+
+    public ResponseEntity<Map<String, String>> refresh(Map<String, String> request) {
+        String refreshToken=request.get("refreshToken");
+        String username=jwtUtil.getUsername(refreshToken);
+        UserDetails userDetails=userService.loadUserByUsername(username);
+        if(jwtUtil.isTokenValid(refreshToken,userDetails)){
+            String newAccessToken=jwtUtil.generateAccessToken(username);
+            return ResponseEntity.ok().body(
+                    Map.of("accessToken",newAccessToken)
+            );
+        }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(
+                Map.of("error","Invalid Refresh Token")
+        );
+    }
 }

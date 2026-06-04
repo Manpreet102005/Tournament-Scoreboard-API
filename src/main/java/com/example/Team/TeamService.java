@@ -40,7 +40,7 @@ public class TeamService {
 
     public ResponseEntity<String> removeTeam(Integer id){
         if(!teamRepository.existsById(id)){
-            throw new MatchNotFoundException(id);
+            throw new TeamNotFoundException(id);
         }
         Team team=getTeamById(id);
         List<Player> players = team.getPlayers();

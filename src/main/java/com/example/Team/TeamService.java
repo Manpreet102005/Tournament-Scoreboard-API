@@ -6,6 +6,7 @@ import com.example.Player.Player;
 import com.example.Player.exceptions.PlayerNotFoundException;
 import com.example.Player.PlayerRepository;
 import com.example.Team.exceptions.TeamAlreadyAssignedException;
+import com.example.Team.exceptions.TeamNameAlreadyExist;
 import com.example.Team.exceptions.TeamNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -27,12 +28,12 @@ public class TeamService {
     }
 
     public Team getTeamById(Integer id) {
-        return teamRepository.findById(id).orElseThrow(()->new MatchNotFoundException(id));
+        return teamRepository.findById(id).orElseThrow(()->new TeamNotFoundException(id));
     }
 
     public ResponseEntity<String> addTeam(Team team){
         if(teamRepository.existsByTeamName(team.getTeamName())){
-            throw new MatchTitleAlreadyExists(team.getTeamName());
+            throw new TeamNameAlreadyExist(team.getTeamName());
         }
         teamRepository.save(team);
         return ResponseEntity.ok().body("Team with id: "+team.getTeamId()+" Added Successfully");

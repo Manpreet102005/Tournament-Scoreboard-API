@@ -2,39 +2,20 @@ package com.example.Match;
 
 import jakarta.validation.Valid;
 
-import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.data.domain.PageRequest;
 import java.time.LocalDateTime;
 
 @RestController
-@RequestMapping("/match")
+@RequestMapping("/admin/match")
 @Validated
-public class MatchController {
+public class AdminMatchController {
 
     private final MatchService matchService;
 
-    public MatchController(MatchService matchService) {
+    public AdminMatchController(MatchService matchService) {
         this.matchService = matchService;
-    }
-
-    @GetMapping
-    public Page<MatchDTO> getAllMatches(
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size) {
-        return matchService.getAllMatches(PageRequest.of(page, size));
-    }
-
-    @GetMapping("/{id}")
-    public MatchDTO getMatchById(@PathVariable Integer id){
-        return matchService.getMatchDTOById(id);
-    }
-
-    @DeleteMapping("/{matchId}")
-    public ResponseEntity<String> removeMatch(@PathVariable Integer matchId){
-        return matchService.removeMatch(matchId);
     }
 
     @PostMapping("/{teamAId}/{teamBId}")
@@ -42,6 +23,11 @@ public class MatchController {
                                            @PathVariable Integer teamAId,
                                            @PathVariable Integer teamBId){
         return matchService.addMatch(match,teamAId,teamBId);
+    }
+
+    @DeleteMapping("/{matchId}")
+    public ResponseEntity<String> removeMatch(@PathVariable Integer matchId){
+        return matchService.removeMatch(matchId);
     }
 
     @PutMapping("reschedule/{matchId}/{newDateTime}")

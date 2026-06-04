@@ -20,7 +20,7 @@ public class JwtConfiguration {
                         auth.
                                 requestMatchers("/auth/**").permitAll()
                                 .requestMatchers("/admin/**").hasAuthority(UserRole.ROLE_ADMIN.name())
-                                .requestMatchers("/user/**").hasAuthority(UserRole.ROLE_USER.name())
+                                .requestMatchers("/user/**").authenticated()
                                 .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)

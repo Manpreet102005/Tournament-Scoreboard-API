@@ -1,6 +1,5 @@
 package com.example.Player;
 
-import com.example.Match.MatchDTO;
 import com.example.Team.TeamRepository;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
@@ -9,29 +8,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
-@RequestMapping("/player")
+@RequestMapping("/admin/player")
 @Validated
-public class PlayerController {
+public class AdminPlayerController {
     private final PlayerService playerService;
 
 
-    PlayerController(PlayerService playerService, PlayerRepository playerRepository, TeamRepository teamRepository){
+    public AdminPlayerController(PlayerService playerService, PlayerRepository playerRepository, TeamRepository teamRepository){
         this.playerService=playerService;
-    }
-    //getAll
-    @GetMapping()
-    public Page<Player> getAllPlayers(
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size) {
-        return playerService.getAllPlayers(PageRequest.of(page, size));
-    }
-
-    @GetMapping("/{id}")
-    public Player getById(@PathVariable Integer id){
-        return playerService.getById(id);
     }
 
     @PostMapping()

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserPlayerController {
     private final PlayerService playerService;
 
-    public UserPlayerController(PlayerService playerService, PlayerRepository playerRepository, TeamRepository teamRepository){
+    public UserPlayerController(PlayerService playerService){
         this.playerService=playerService;
     }
     //getAll

@@ -1,8 +1,8 @@
 package com.example.Team;
 
-import com.example.Match.exceptions.MatchNotFoundException;
-import com.example.Match.exceptions.MatchTitleAlreadyExists;
 import com.example.Player.Player;
+import com.example.Player.PlayerDTO;
+import com.example.Player.PlayerService;
 import com.example.Player.exceptions.PlayerNotFoundException;
 import com.example.Player.PlayerRepository;
 import com.example.Team.exceptions.TeamAlreadyAssignedException;
@@ -11,16 +11,19 @@ import com.example.Team.exceptions.TeamNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 @Service
 public class TeamService {
 
     private final TeamRepository teamRepository;
     private final PlayerRepository playerRepository;
+    private final PlayerService playerService;
 
-    public TeamService(TeamRepository matchRepository,PlayerRepository playerRepository) {
+    public TeamService(TeamRepository matchRepository, PlayerRepository playerRepository, PlayerService playerService) {
         this.teamRepository = matchRepository;
         this.playerRepository=playerRepository;
+        this.playerService = playerService;
     }
 
     public List<Team> getAllTeams() {
@@ -63,7 +66,7 @@ public class TeamService {
         }
         player.setTeam(team);
         playerRepository.save(player);
-        return ResponseEntity.ok().body("Player with id: "+player.getId()+" added to team with id: "+teamId+" successfully.");
+        return ResponseEntity.ok().body("Player with id: "+player.getPlayerId()+" added to team with id: "+teamId+" successfully.");
     }
 
     public ResponseEntity<String> renameTeam(Integer teamId, String newTeamName) {
@@ -73,5 +76,14 @@ public class TeamService {
         team.setTeamName(newTeamName);
         teamRepository.save(team);
         return ResponseEntity.ok().body("Team with id: "+teamId+" renamed from "+oldName+" to "+newTeamName+" successfully.");
+    }
+
+    public List<PlayerDTO> getPlayersByTeam(Integer teamId) {
+        List<Player> playersByTeam=playerRepository.findPlayersByTeam(getTeamById(teamId));
+        List<PlayerDTO> playersDTOList=new ArrayList<>();
+        for(Player player :playersByTeam){
+            playersDTOList.add(playerService.toPlayerDTO(player));
+        }
+        return playersDTOList;
     }
 }

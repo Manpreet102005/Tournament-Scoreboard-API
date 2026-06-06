@@ -9,32 +9,31 @@ import jakarta.validation.constraints.NotBlank;
 public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer playerId;
 
     @NotBlank(message="Name of player can't be blank")
     @Column(unique = true)
-    private String name;
+    private String playerName;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="team_id")
     private Team team;
     public Player(){};
-    public Player(String name,Team team) {
-        this.name = name;
-        this.team=team;
+    public Player(String playerName){
+        this.playerName=playerName;
     }
 
 
-    public Integer getId() {
-        return id;
+    public Integer getPlayerId() {
+        return playerId;
     }
 
-    public String getName() {
-        return name;
+    public String getPlayerName() {
+        return playerName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
     }
 
     public Team getTeam() {

@@ -19,10 +19,6 @@ public class PlayerService {
         this.playerRepository = playerRepository;
     }
 
-    private Player getById(Integer id) {
-        return playerRepository.findById(id).orElseThrow(()->new PlayerNotFoundException(id));
-    }
-
     public PlayerDTO getDTOById(Integer id) {
         Player player=playerRepository.findById(id).orElseThrow(()->new PlayerNotFoundException(id));
         return toPlayerDTO(player);
@@ -33,11 +29,11 @@ public class PlayerService {
     }
 
     public ResponseEntity<String> addPlayer(Player player) {
-        if(playerRepository.existsByName(player.getName())){
-            throw new PlayerNameAlreadyExists(player.getName());
+        if(playerRepository.existsByPlayerName(player.getPlayerName())){
+            throw new PlayerNameAlreadyExists(player.getPlayerName());
         }
         playerRepository.save(player);
-        return ResponseEntity.ok().body("Player added successfully. Assigned Id: "+player.getId());
+        return ResponseEntity.ok().body("Player added successfully. Assigned Id: "+player.getPlayerId());
     }
 
     public ResponseEntity<String> deletePlayer(Integer id) {
@@ -47,10 +43,10 @@ public class PlayerService {
         playerRepository.deleteById(id);
         return ResponseEntity.ok().body("Player with id: "+id+" deleted successfully");
     }
-    private PlayerDTO toPlayerDTO(Player player){
+    public PlayerDTO toPlayerDTO(Player player){
         return new PlayerDTO(
-                player.getId(),
-                player.getName(),
+                player.getPlayerId(),
+                player.getPlayerName(),
                 player.getTeam().getTeamName()
         );
     }

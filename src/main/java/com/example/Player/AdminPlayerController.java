@@ -15,7 +15,7 @@ public class AdminPlayerController {
     private final PlayerService playerService;
 
 
-    public AdminPlayerController(PlayerService playerService, PlayerRepository playerRepository, TeamRepository teamRepository){
+    public AdminPlayerController(PlayerService playerService){
         this.playerService=playerService;
     }
 

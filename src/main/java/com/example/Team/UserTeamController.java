@@ -1,5 +1,6 @@
 package com.example.Team;
 
+import com.example.Player.PlayerDTO;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +23,11 @@ public class UserTeamController {
 
     @GetMapping()
     public List<Team> getAllTeams(){
-
         return teamService.getAllTeams();
+    }
+
+    @GetMapping("/{teamId}/players")
+    public List<PlayerDTO> getPlayersByTeam(@PathVariable Integer teamId){
+        return teamService.getPlayersByTeam(teamId);
     }
 }

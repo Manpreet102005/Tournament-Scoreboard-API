@@ -1,0 +1,93 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    background-color: #f4f4f4;
+}
+
+header {
+    height: 100px;
+    background-color: #1a1a2e;
+    color: white;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#login-form{
+    width:35%;
+    border: 2px solid #1a1a2e;
+    border-radius: 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-around;
+
+}
+#mode{
+    margin:20px;
+    padding: 10px;
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+}
+button{
+    width: 110px;
+    height: 40px;
+    font-size: 18px;
+    border: 1px black solid;
+    border-radius: 14px;
+}
+#login-button{
+    background-color: #4b4ba1;
+}
+#login-button:hover{
+    background-color:antiquewhite;
+    color: white;
+}
+#register-button:hover{
+    background-color:antiquewhite;
+    color: white;
+}
+
+#details{
+    margin:20px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items:center
+}
+.details-row{
+    display: flex;
+    align-items:center;
+    margin-bottom:15px;
+}
+
+.details-row label{
+    width:100px;
+}
+
+.details-row input{
+    width:180px;
+    padding:5px;
+}
+#submit-div{
+    margin:20px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+

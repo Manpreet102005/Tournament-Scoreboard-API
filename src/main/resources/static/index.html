@@ -14,19 +14,24 @@
 <main>
     <div id="login-form">
         <div id="mode">
-            <button id="login">Login</button>
-            <button id="register">Register</button>
+            <button id="login-button" class="active">Login</button>
+            <button id="register-button">Register</button>
         </div>
-        <div>
-            <label for="username">Username</label>
-            <input type="text" id="username">
-            <label for="password">Password</label>
-            <input type="password" id="password">
+        <div id="details">
+            <div class="details-row">
+                <label for="username">Username:</label>
+                <input type="text" id="username">
+            </div>
+            <div class="details-row">
+                <label for="password">Password:</label>
+                <input type="password" id="password">
+            </div>
         </div>
-        <div>
+        <div id="submit-div">
             <button type="submit">Submit</button>
         </div>
     </div>
 </main>
+<script src="js/script.js"></script>
 </body>
 </html>

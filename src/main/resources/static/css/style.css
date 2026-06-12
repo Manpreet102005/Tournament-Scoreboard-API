@@ -120,7 +120,9 @@ table{
     border-collapse: collapse;  
 }
 
-th{
+thead th{
+    position: sticky;
+    top: 0;
     border: 1px solid black;
     padding: 10px;
     text-align: center;
@@ -130,4 +132,9 @@ th{
     width: 100%;
     max-height: 500px;
     overflow-y: auto;
+}
+td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
 }

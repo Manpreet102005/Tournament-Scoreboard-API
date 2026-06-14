@@ -26,8 +26,11 @@ main {
     padding: 0 24px;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 #login-form{
+    position: relative;
+    top:7vh;
     width:35%;
     border: 2px solid #0d2c54;
     border-radius: 35px;
@@ -90,8 +93,6 @@ button{
     justify-content: center;
 }
 
-/* PAGE 2/3/4/5*/
-
 #nav-bar{
     width: 100%;
     display: flex;
@@ -133,14 +134,15 @@ thead th{
     max-height: 349px;
     overflow-y: auto;
 }
+.scoreboard{
+    max-height: 500px;
+    overflow-y: auto;
+}
 td {
     padding: 12px;
     text-align: center;
     border-bottom: 1px solid #ddd;
 }
-
-/*Pagination Styling*/
-
 .pagination-nav-div{
     width: 100%;
     height: 50px;
@@ -152,14 +154,8 @@ td {
     margin:20px;
 }
 
-/* admin only features by default hidden*/
-/*.admin-only{
-    display:none;
-}*/
-.admin-div{
-    width:28%;
-    display: flex;
-    justify-content: space-between;
+.admin-only{
+    display:none;/*becomes block when admin login*/
 }
 .admin-buttons{
   width: 150px;
@@ -237,7 +233,7 @@ td {
 }
 .match-teams{
     color:grey;
-    font-size: small;
+
 }
 .match-date-time{
     color: grey;
@@ -250,4 +246,35 @@ td {
 .match-status-heading{
     font-size:18px;
     font-style: italic;
+}
+.match-winner-details{
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.match-winner{
+    margin:10px;
+    font-style: italic;
+    color:#1d57a1;
+}
+
+.back-nav{
+    width: 15%;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.back-nav-text{
+    font-size: x-large;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.back-nav-symbol{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

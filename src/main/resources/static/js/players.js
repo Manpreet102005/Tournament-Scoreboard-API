@@ -1,4 +1,4 @@
-async function showPlayers() {
+async function getPlayers() {
     const response= await fetch("http://localhost:8081/user/player",{
         method:"GET",
         headers:{
@@ -6,15 +6,20 @@ async function showPlayers() {
         }
     });
 
+    if(!response.ok){
+        console.log(response.status);
+        return;
+    }
     const data=await response.json();
-    return data;
+    console.log(data);
+    return data.content;
 }
 
 function generatePlayerRows(players){
     
-    const playerTableBody=document.querySelector("#matches-table-body");
+    const playerTableBody=document.querySelector("#players-table-body");
     let html="";
-    players.forEach(player => {
+    players.forEach((player) => {
         html+=`<tr>
                     <th>${player.playerId}</th>
                     <th>${player.playerName} </th>
@@ -25,8 +30,8 @@ function generatePlayerRows(players){
     playerTableBody.innerHTML=html;
 }
 async function init() { 
-    const players = await showPlayers();
-    generateplayerRows(players);
+    const players = await getPlayers();
+    generatePlayerRows(players);
 }   
 
 init();

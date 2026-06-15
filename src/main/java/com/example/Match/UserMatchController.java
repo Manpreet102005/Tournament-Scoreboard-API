@@ -3,8 +3,8 @@ package com.example.Match;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
-;
 
+@CrossOrigin(origins="*")
 @RestController
 @RequestMapping("/user/match")
 public class UserMatchController {

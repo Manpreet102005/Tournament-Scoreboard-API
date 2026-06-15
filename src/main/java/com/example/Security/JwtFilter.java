@@ -1,6 +1,8 @@
 package com.example.Security;
 
 import com.example.User.UserService;
+
+import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -28,6 +30,7 @@ public class JwtFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
         String header=request.getHeader("Authorization");
+        try{
         if(header!=null && header.startsWith("Bearer ")){
             String token=header.substring(7);
             String username=jwtUtil.getUsername(token);
@@ -41,6 +44,10 @@ public class JwtFilter extends OncePerRequestFilter {
                         );
                 SecurityContextHolder.getContext().setAuthentication(authToken);
             }
+        }
+        }catch(ExpiredJwtException e){
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            return;
         }
         filterChain.doFilter(request,response);
     }

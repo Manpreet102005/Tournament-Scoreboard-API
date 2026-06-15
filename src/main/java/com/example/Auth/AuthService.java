@@ -38,7 +38,8 @@ public class AuthService {
             return ResponseEntity.ok().body(
                     Map.of(
                             "accessToken",accessToken,
-                            "refreshToken",refreshToken
+                            "refreshToken",refreshToken,
+                            "userRole",userDetails.getAuthorities().iterator().next().getAuthority()
                     )
             );
         }

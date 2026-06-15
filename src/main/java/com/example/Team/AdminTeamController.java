@@ -3,9 +3,11 @@ package com.example.Team;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 
+@CrossOrigin(origins="*")
 @RestController
 @RequestMapping("/admin/team")
 @Validated

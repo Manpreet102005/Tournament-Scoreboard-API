@@ -6,6 +6,10 @@ async function showScoreBoard() {
         }
     });
 
+    if(!response.ok){
+        console.log(response.status);
+        return;
+    }
     const data=await response.json();
     return data;
 }

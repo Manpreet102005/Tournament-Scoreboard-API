@@ -27,18 +27,27 @@ submit.addEventListener("click",async ()=>{
             headers:{"content-type":"application/json"},
             body:JSON.stringify({username:username.value,password:password.value})
         });
-
+    
+    if(!response.ok){
+        console.log(response.status);
+        message.textContent="Login Failed. Try Again"
+        return;
+    }
     if(mode=="login"){
         const data= await response.json();
         localStorage.setItem("accessToken",data.accessToken);
         localStorage.setItem("refreshToken",data.refreshToken);
-        window.location.href="scoreboard.html"
+        localStorage.setItem("userRole",data.userRole);
+        if(response.ok){
+            window.location.href = "scoreboard.html";
+        }else{
+            message.textContent = "Invalid username or password";
+        }
     }
     else{
         const data= await response.text();
-        const message=document.querySelector("#message"+"Login to Proceed.")
-        message.textContent=data;
-        console.log(data);
+        const message=document.querySelector("#message")
+        message.textContent=data+"Login to Proceed.";
         login.classList.add("active");
         register.classList.remove("active");
         password.value="";

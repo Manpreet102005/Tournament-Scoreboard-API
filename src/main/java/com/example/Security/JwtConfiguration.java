@@ -3,6 +3,7 @@ package com.example.Security;
 import com.example.User.UserRole;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,7 +20,7 @@ public class JwtConfiguration {
                 .cors(cors->{})
                 .authorizeHttpRequests(auth->
                         auth
-                                .requestMatchers("/","/index.html","/css/**","/js/**").permitAll()
+                                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                                 .requestMatchers("/auth/**").permitAll()
                                 .requestMatchers("/admin/**").hasAuthority(UserRole.ROLE_ADMIN.name())
                                 .requestMatchers("/user/**").authenticated()

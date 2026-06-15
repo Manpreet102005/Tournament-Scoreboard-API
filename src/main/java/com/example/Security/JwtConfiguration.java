@@ -16,6 +16,7 @@ public class JwtConfiguration {
     public SecurityFilterChain filter(HttpSecurity request, JwtFilter jwtFilter) throws Exception {
         return request
                 .csrf(csrf->csrf.disable())
+                .cors(cors->{})
                 .authorizeHttpRequests(auth->
                         auth
                                 .requestMatchers("/","/index.html","/css/**","/js/**").permitAll()

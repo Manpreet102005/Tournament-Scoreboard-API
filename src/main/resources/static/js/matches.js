@@ -10,14 +10,14 @@ function generateMatchRows(matches){
     let html="";
     matches.forEach(match => {
         html+=`<tr>
-                    <th>${match.matchId}</th>
-                    <th>${match.matchTitle} </th>
-                    <th>${match.matchDateTime} </th>
-                    <th>${match.teamAName} </th>
-                    <th>${match.teamBName} </th>
-                    <th>${match.teamAScore} </th>
-                    <th>${match.teamBScore} </th>
-                    <th>${match.matchStatus} </th>
+                    <td>${match.matchId}</td>
+                    <td>${match.matchTitle} </td>
+                    <td>${match.matchDateTime} </td>
+                    <td>${match.teamAName} </td>
+                    <td>${match.teamBName} </td>
+                    <td>${match.teamAScore} </td>
+                    <td>${match.teamBScore} </td>
+                    <td>${match.matchStatus} </td>
                 </tr>`;
     });
 
@@ -50,13 +50,17 @@ confirmAddMatchBtn.addEventListener("click",async ()=>{
             "content-type":"application/json",
             "authorization":`Bearer ${localStorage.getItem("accessToken")}`
         },
-        body:JSON.stringify(matchTitle,matchDateTime)
+        body:JSON.stringify({
+            matchTitle:matchTitle,
+            matchDateTime:matchDateTime})
     });
     const data=await response.text();
     console.log(data);
-    alert(data);
     if(response.ok){
         document.querySelector("#add-match-modal").style.display="none";
+        init();
+    }else{
+        alert(data);
     }
 })
 

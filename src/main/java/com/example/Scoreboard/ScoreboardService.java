@@ -28,7 +28,6 @@ public class ScoreboardService {
             Double winRatio= team.getMatchesPlayed()==0?0:(double)team.getWins()/team.getMatchesPlayed()*100;
             scoreboardList.add(
                     new TeamDTO(i+1,
-                            team.getTeamId(),
                             team.getTeamName(),
                             team.getTotalScore(),
                             team.getMatchesPlayed(),

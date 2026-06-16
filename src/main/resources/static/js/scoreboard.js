@@ -7,7 +7,6 @@ function generateScoreboardRows(scoreboardDetails){
     scoreboardDetails.forEach(teamDTO => {
         html+=`<tr>
                     <td>${teamDTO.rank}</td>
-                    <td>${teamDTO.teamId} </td>
                     <td>${teamDTO.teamName} </td>
                     <td>${teamDTO.totalScore} </td>
                     <td>${teamDTO.matchesPlayed} </td>

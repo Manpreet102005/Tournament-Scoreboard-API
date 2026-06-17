@@ -1,3 +1,7 @@
+if(localStorage.getItem("refreshToken")){
+    window.location.href="scoreboard.html";
+}
+
 const register=document.querySelector("#register-button");
 const login=document.querySelector("#login-button");
 

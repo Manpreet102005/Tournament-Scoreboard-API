@@ -63,6 +63,11 @@ async function refreshNewAccessToken() {
         },
         body:JSON.stringify({refreshToken})
     });
+    if(!response.ok){
+        localStorage.clear();
+        window.location.href="index.html";
+        return;
+    }
     const data=await response.json();
     localStorage.setItem("accessToken",data.accessToken);
 }

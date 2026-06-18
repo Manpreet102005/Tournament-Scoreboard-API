@@ -1,12 +1,13 @@
 package com.example.Match;
 
-import jakarta.validation.Valid;
+import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
+import jakarta.validation.Valid;
 
 @CrossOrigin(origins="*")
 @RestController
@@ -52,5 +53,10 @@ public class AdminMatchController {
     @PutMapping("/end/{matchId}")
     public ResponseEntity<String> endMatch(@PathVariable Integer matchId){
         return matchService.endMatch(matchId);
+    }
+    
+    @GetMapping("/status/{matchStatus}")
+    public List<MatchDTO> getMatchesByStatus(@PathVariable String matchStatus){
+        return matchService.getMatchesByStatus(matchStatus);
     }
 }

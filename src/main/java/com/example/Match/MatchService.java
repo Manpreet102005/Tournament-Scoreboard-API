@@ -9,6 +9,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.data.domain.Pageable;
 
 
@@ -155,6 +156,12 @@ public class MatchService {
         matchRepository.save(match);
         return ResponseEntity.ok().body("Match with id: "+matchId+" is now COMPLETED ");
     }
+
+    public List<MatchDTO> getMatchesByStatus(String matchStatus){
+        MatchStatus status = MatchStatus.valueOf(matchStatus);
+        return matchRepository.findByMatchStatus(status).stream().map(this::toMatchDTO).toList();
+    }
+
     private MatchDTO toMatchDTO(Match match) {
         return new MatchDTO(
                 match.getMatchId(),

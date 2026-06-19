@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 @ControllerAdvice
 public class UniversalHandler {
@@ -75,5 +76,15 @@ public class UniversalHandler {
     @ExceptionHandler(MatchStatusException.class)
     public ResponseEntity<String> handle(MatchStatusException e){
         return ResponseEntity.badRequest().body(e.getMessage());
+    }
+
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public ResponseEntity<String> handle(MethodArgumentTypeMismatchException e){
+        return ResponseEntity.badRequest().body("Invalid parameter type: " + e.getMessage());
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<String> handle(Exception e){
+        return ResponseEntity.status(500).body("An unexpected error occurred: " + e.getMessage());
     }
 }

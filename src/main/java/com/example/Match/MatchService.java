@@ -9,7 +9,6 @@ import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.data.domain.Pageable;
 
 
@@ -36,6 +35,8 @@ public class MatchService {
                 match.getMatchId(),
                 match.getMatchTitle(),
                 match.getMatchDateTime(),
+                match.getTeamA().getTeamId(),
+                match.getTeamB().getTeamId(),
                 match.getTeamAName(),
                 match.getTeamBName(),
                 match.getTeamAScore(),

@@ -18,7 +18,6 @@ async function fetchData(url,paginated=false,page=0,size=9) {
             }
         });
         if(!response.ok){
-            console.log(`Retry failed - Status: ${response.status} for URL: ${fullUrl}`);
             return paginated ? { content: [], totalPages: 0 } : [];
         }
         const data=await response.json();
@@ -27,7 +26,6 @@ async function fetchData(url,paginated=false,page=0,size=9) {
     }
 
     if(!response.ok){
-        console.log(`Failed - Status: ${response.status} for URL: ${fullUrl}`);
         return paginated ? { content: [], totalPages: 0 } : [];
     }
     const data=await response.json();

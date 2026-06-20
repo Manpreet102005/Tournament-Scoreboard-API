@@ -5,21 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page: Scoreboard</title>
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://kit.fontawesome.com/9633a751b5.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
         <div id="nav-bar">
-            <div id="scoreboard" class="nav-bar-tabs active">
-                <a href="scoreboard.html">Scoreboard</a>
+            <div class="nav-bar-left">
+                <div id="scoreboard" class="nav-bar-tab active">
+                    <a href="scoreboard.html">Scoreboard</a>
+                </div>
+                <div id="matches" class="nav-bar-tab">
+                    <a href="matches.html">Matches</a>
+                </div>
+                <div id="teams" class="nav-bar-tab">
+                    <a href="teams.html">Teams</a>
+                </div>
+                <div id="players" class="nav-bar-tab">
+                    <a href="players.html">Players</a>
+                </div>
             </div>
-            <div id="matches" class="nav-bar-tabs ">
-                <a href="matches.html">Matches</a>
-            </div>
-            <div id="teams" class="nav-bar-tabs ">
-                <a href="teams.html">Teams</a>
-            </div>
-            <div id="players" class="nav-bar-tabs ">
-                <a href="players.html">Players</a>
+            <div class="nav-bar-right">
+                <i class="fa-solid fa-bars fa-xl" id="burger-menu-icon" style="color: white; cursor: pointer;"></i>
+                <div id="user-dropdown" class="user-menu">
+                    <div id="menu-promote" class="user-menu-item admin-only" style="display: none;">Promote User</div>
+                    <div id="menu-logout" class="user-menu-item">Logout</div>
+                </div>
             </div>
         </div>
     </header>

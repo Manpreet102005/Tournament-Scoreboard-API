@@ -26,7 +26,7 @@ public class MatchService {
     }
 
     public Page<MatchDTO> getAllMatches(Pageable pageable) {
-        return matchRepository.findAll(pageable).map(this::toMatchDTO);
+        return matchRepository.findAllSortedByStatus(pageable).map(this::toMatchDTO);
     }
 
     public MatchDTO getMatchDTOById(Integer id) {

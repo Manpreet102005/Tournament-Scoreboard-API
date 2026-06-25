@@ -22,7 +22,8 @@ const submit=document.querySelector("#submit-button");
 const message = document.querySelector("#message");
 
 submit.addEventListener("click",async ()=>{
-
+    submit.textContent="Submitting...";
+    submit.disabled=true;
     let mode="";
     if(register.classList.contains("active")){
        mode="register";

@@ -1,6 +1,8 @@
 package com.example.User;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,7 +16,7 @@ public class User implements UserDetails {
     @Id
     @Pattern(regexp = "^[a-zA-Z0-9]{3,20}$", message = "Username must be 3-20 characters, only letters and numbers allowed")    
     private String username;
-    @Min(min=6,max=20)
+    @Size(min=6,max=20)
     private String password;
     @Enumerated(value= EnumType.STRING)
     private UserRole userRole;

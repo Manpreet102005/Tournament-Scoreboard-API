@@ -391,3 +391,11 @@ td {
     border-radius: 8px;
 }
 
+#message{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: small;
+}
+

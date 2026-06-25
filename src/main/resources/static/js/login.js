@@ -8,10 +8,12 @@ const login=document.querySelector("#login-button");
 register.addEventListener("click",()=>{
     register.classList.add("active");
     login.classList.remove("active");
+    message.innerHTML = "Username: 3-20 characters, letters & numbers only<br>Password: 3-20 characters";
 })
 login.addEventListener("click",()=>{
     login.classList.add("active");
     register.classList.remove("active");
+    message.innerHTML="";
 })
 
 const username=document.querySelector("#username");
@@ -20,12 +22,30 @@ const submit=document.querySelector("#submit-button");
 const message = document.querySelector("#message");
 
 submit.addEventListener("click",async ()=>{
+
     let mode="";
     if(register.classList.contains("active")){
        mode="register";
     }
     if(login.classList.contains("active")){
         mode="login"
+    }
+    if(mode==="register"){
+        const allowed = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        if(username.value.length<3 || username.value.length>20){
+            message.textContent="Username must be 3-20 characters";
+            return;
+        }
+        if(password.value.length<3 || password.value.length>20){
+            message.textContent="Password must be 3-20 characters";
+            return;
+        }
+        for(let char of username.value){
+            if(!allowed.includes(char)){
+                message.textContent="Only letters and numbers allowed in username";
+                return;
+            }
+        }
     }
     try{
         const response=await fetch(`http://localhost:8081/auth/${mode}`,{

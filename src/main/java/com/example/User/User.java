@@ -14,9 +14,10 @@ import java.util.List;
 @Table(name="_user")
 public class User implements UserDetails {
     @Id
-    @Pattern(regexp = "^[a-zA-Z0-9]{3,20}$", message = "Username must be 3-20 characters, only letters and numbers allowed")    
+    @Pattern(regexp = "^[a-zA-Z0-9]{3,20}$", message = "Username must be 3-20 characters, only letters and numbers allowed")
+    @Size(min=3, max=20)
     private String username;
-    @Size(min=6)
+    @Size(min=6, max=100)
     private String password;
     @Enumerated(value= EnumType.STRING)
     private UserRole userRole;

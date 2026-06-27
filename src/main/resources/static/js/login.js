@@ -33,8 +33,8 @@ submit.addEventListener("click",async ()=>{
     }
     if(mode==="register"){
         const allowed = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        if(username.value.length<3 || username.value.length>20){
-            message.textContent="Username must be 3-20 characters";
+        if(username.value.length<6 || username.value.length>20){
+            message.textContent="Username must be 6-20 characters";
             return;
         }
         if(password.value.length<6){

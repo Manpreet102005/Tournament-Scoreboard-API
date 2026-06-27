@@ -28,6 +28,9 @@ public class AuthService {
         if(userRepository.existsById(user.getUsername())){
             throw new UserAlreadyExists(user.getUsername());
         }
+        if(user.getPassword() == null || user.getPassword().length() < 6 || user.getPassword().length() > 30) {
+            return ResponseEntity.badRequest().body("Password must be between 6 and 30 characters.");
+        }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setUserRole(UserRole.ROLE_USER);
         userRepository.save(user);

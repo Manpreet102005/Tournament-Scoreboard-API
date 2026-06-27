@@ -22,7 +22,7 @@ async function generateUserRows(users){
 }
 
 async function init(){
-    const users=await fetchData("http://localhost:8081/admin/user");
+    const users=await fetchData(`${BASE_URL}/admin/user`);
     await generateUserRows(users);
 }
 
@@ -36,7 +36,7 @@ document.querySelector("#user-body").addEventListener("click", (e) => {
 })
 
 document.querySelector("#make-admin-ok").addEventListener("click",async () => {
-    const response=await modificationRequest(`http://localhost:8081/admin/user/promote/${selectedUsername}`,"PUT");
+    const response=await modificationRequest(`${BASE_URL}/admin/user/promote/${selectedUsername}`,"PUT");
     document.querySelector("#promote-to-admin").style.display="none";
     init();
     if(!response.ok){

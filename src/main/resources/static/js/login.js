@@ -49,7 +49,7 @@ submit.addEventListener("click",async ()=>{
         }
     }
     try{
-        const response=await fetch(`http://localhost:8081/auth/${mode}`,{
+        const response=await fetch(`${BASE_URL}/auth/${mode}`,{
             method:"POST",
             headers:{"content-type":"application/json"},
             body:JSON.stringify({username:username.value,password:password.value})

@@ -1,4 +1,4 @@
-const url="http://localhost:8081/user/match";
+const url=`${BASE_URL}/user/match`;
 let page=0;
 
 const nextBtn=document.querySelector("#next");
@@ -45,7 +45,7 @@ confirmAddMatchBtn.addEventListener("click",async ()=>{
     const matchDateTime=document.querySelector("#match-date-time").value;    
     const teamAId=document.querySelector("#team-A-id").value;
     const teamBId=document.querySelector("#team-B-id").value;   
-    const response=await modificationRequest(`http://localhost:8081/admin/match/${teamAId}/${teamBId}`,
+    const response=await modificationRequest(`${BASE_URL}/admin/match/${teamAId}/${teamBId}`,
         "POST",
         {
             matchTitle:matchTitle,

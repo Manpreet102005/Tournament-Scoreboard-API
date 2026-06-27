@@ -1,4 +1,4 @@
-const url="http://localhost:8081/scoreboard";
+const url=`${BASE_URL}/scoreboard`;
 
 function generateScoreboardRows(scoreboardDetails){
     

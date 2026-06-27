@@ -1,4 +1,7 @@
-
+const BASE_URL = window.location.hostname === "localhost"
+  ? "${BASE_URL}"
+  : "https://tournament-scoreboard-api-production.up.railway.app";
+  
 async function fetchData(url,paginated=false,page=0,size=9) {
     const fullUrl=paginated?`${url}?page=${page}&size=${size}`:url;
     const response= await fetch(fullUrl,{
@@ -54,7 +57,7 @@ function handlePagination(data,page,nextBtn,prevBtn){
 }
 async function refreshNewAccessToken() {
     const refreshToken=localStorage.getItem("refreshToken");
-    const response=await fetch("http://localhost:8081/auth/refresh",{
+    const response=await fetch(`${BASE_URL}/auth/refresh`,{
         method:"POST",
         headers:{
             "content-type":"application/json",

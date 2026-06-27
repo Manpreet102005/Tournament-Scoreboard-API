@@ -86,7 +86,7 @@ function generateCompletedMatchCards(completedMatches){
 }
 
 async function init(){
-    const baseUrl="http://localhost:8081/admin/match/status/";
+    const baseUrl=`${BASE_URL}/admin/match/status/`;
     
     const ongoingMatches=await fetchData(baseUrl+"ONGOING");
     const scheduledMatches=await fetchData(baseUrl+"SCHEDULED");
@@ -145,7 +145,7 @@ function activateBtns(){
 }
 
 document.querySelector("#start-match-ok").addEventListener("click",async (e)=>{
-    const response=await modificationRequest(`http://localhost:8081/admin/match/start/${selectedMatchId}`,"PUT");
+    const response=await modificationRequest(`${BASE_URL}/admin/match/start/${selectedMatchId}`,"PUT");
     if(!response.ok){
         const data=await response.text();
         alert(data);
@@ -167,8 +167,8 @@ document.querySelector("#update-score-ok").addEventListener("click",async (e)=>{
         alert("Scores cannot be empty.");
         return;
     }
-    const response1=await modificationRequest(`http://localhost:8081/admin/match/${selectedMatchId}/${selectedTeamAId}/${teamAScore}`,"PUT");
-    const response2=await modificationRequest(`http://localhost:8081/admin/match/${selectedMatchId}/${selectedTeamBId}/${teamBScore}`,"PUT");
+    const response1=await modificationRequest(`${BASE_URL}/admin/match/${selectedMatchId}/${selectedTeamAId}/${teamAScore}`,"PUT");
+    const response2=await modificationRequest(`${BASE_URL}/admin/match/${selectedMatchId}/${selectedTeamBId}/${teamBScore}`,"PUT");
     if(!(response1.ok && response2.ok)){
         const data1=await response1.text();
         const data2=await response2.text();
@@ -189,7 +189,7 @@ document.querySelector("#reschedule-match-ok").addEventListener("click",async (e
         alert("Date Time cannot be empty.");
         return;
     }
-    const response=await modificationRequest(`http://localhost:8081/admin/match/reschedule/${selectedMatchId}/${newDateTime}`,"PUT");
+    const response=await modificationRequest(`${BASE_URL}/admin/match/reschedule/${selectedMatchId}/${newDateTime}`,"PUT");
     if(!response.ok){
         const data=await response.text();
         alert(data);
@@ -204,7 +204,7 @@ document.querySelector("#reschedule-match-cancel").addEventListener("click", () 
 });
 
 document.querySelector("#delete-match-ok").addEventListener("click",async (e)=>{
-    const response=await modificationRequest(`http://localhost:8081/admin/match/${selectedMatchId}`,"DELETE");
+    const response=await modificationRequest(`${BASE_URL}/admin/match/${selectedMatchId}`,"DELETE");
     if(!response.ok){
         const data=await response.text();
         alert(data);
@@ -219,7 +219,7 @@ document.querySelector("#delete-match-cancel").addEventListener("click", () => {
 });
 
 document.querySelector("#end-match-ok").addEventListener("click",async (e)=>{
-    const response=await modificationRequest(`http://localhost:8081/admin/match/end/${selectedMatchId}`,"PUT");
+    const response=await modificationRequest(`${BASE_URL}/admin/match/end/${selectedMatchId}`,"PUT");
     if(!response.ok){
         const data=await response.text();
         alert(data);

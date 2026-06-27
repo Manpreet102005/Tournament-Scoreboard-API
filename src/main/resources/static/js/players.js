@@ -1,4 +1,4 @@
-const url="http://localhost:8081/user/player";
+const url=`${BASE_URL}/user/player`;
 let page=0;
 
 const nextBtn=document.querySelector("#next");
@@ -50,7 +50,7 @@ addPlayerBtn.addEventListener("click",()=>{
 const confirmAddPlayerBtn= document.querySelector("#add-player-ok");
 confirmAddPlayerBtn.addEventListener("click",async ()=>{    
     const playerName=document.querySelector("#player-name").value; 
-    const response=await modificationRequest("http://localhost:8081/admin/player","POST",{playerName});
+    const response=await modificationRequest(`${BASE_URL}/admin/player`,"POST",{playerName});
     const data=await response.text();
     console.log(data);
     alert(data);
@@ -68,7 +68,7 @@ deletePlayerBtn.addEventListener("click",()=>{
 const confirmDeletePlayerBtn=document.querySelector("#delete-player-ok");
 confirmDeletePlayerBtn.addEventListener("click",async ()=>{
     const playerId=document.querySelector("#player-id").value;
-    const response = await modificationRequest(`http://localhost:8081/admin/player/${playerId}`,"DELETE");
+    const response = await modificationRequest(`${BASE_URL}/admin/player/${playerId}`,"DELETE");
     const data=await response.text();
     if(response.ok){
         document.querySelector("#delete-player-modal").style.display="none";

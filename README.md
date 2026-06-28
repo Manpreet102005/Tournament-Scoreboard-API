@@ -112,7 +112,7 @@ The frontend is a separate vanilla JS + HTML app served statically. It connects 
  
 Pages: Scoreboard, Matches, Teams, Players, Admin Panel
  
-**Frontend repo / deployed at:** [tournament-scoreboard-jet.vercel.app](https://tournament-scoreboard-jet.vercel.app)
+**Deployed at:** [tournament-scoreboard-application.vercel.app](https://tournament-scoreboard-application.vercel.app)
  
 ---
  

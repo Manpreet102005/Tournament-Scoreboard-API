@@ -1,4 +1,4 @@
-# Tournament Scoreboard API
+# Tournament Scoreboard
 
 A REST API built with Java and Spring Boot to manage tournament data — teams, players, matches, and a live scoreboard.
 
@@ -71,14 +71,59 @@ A REST API built with Java and Spring Boot to manage tournament data — teams, 
 ---
 
 ## Setup
-
-Add `application.properties` with your DB credentials and JWT secret (min 32 characters):
-
+ 
+**Prerequisites:** Java 17, Maven, MySQL
+ 
+**1. Clone the repo**
+ 
+```bash
+git clone https://github.com/Manpreet102005/Tournament-Scoreboard-API.git
+cd Tournament-Scoreboard-API
 ```
-spring.datasource.url=jdbc:mysql://localhost:3306/scoreboard
-spring.datasource.username=root
-spring.datasource.password=yourpassword
-jwt.secret=yoursecretkeyatleast32charslong
+ 
+**2. Create a `.env` file in the project root**
+ 
 ```
-
-Run with `mvn spring-boot:run`.
+DB_URL=jdbc:mysql://localhost:3306/tournament
+DB_USERNAME=your_mysql_username
+DB_PASSWORD=your_mysql_password
+JWT_SECRET=your_secret_key_minimum_32_characters
+```
+ 
+**3. Create the database**
+ 
+```sql
+CREATE DATABASE tournament;
+```
+ 
+**4. Run**
+ 
+```bash
+mvn spring-boot:run
+```
+ 
+Server starts on `http://localhost:8080`. Tables are auto-created by Hibernate on first run.
+ 
+---
+ 
+## Frontend
+ 
+The frontend is a separate vanilla JS + HTML app served statically. It connects to the backend via the REST API and switches between localhost and the Railway URL based on the hostname.
+ 
+Pages: Scoreboard, Matches, Teams, Players, Admin Panel
+ 
+**Frontend repo / deployed at:** [tournament-scoreboard-jet.vercel.app](https://tournament-scoreboard-jet.vercel.app)
+ 
+---
+ 
+## Project Structure
+ 
+```
+src/main/java/com/example/
+├── Security/        # JWT filter, JWT util, security config
+├── User/            # Auth controller, user service, user repo
+├── Player/          # Player entity, controller, service, repo, DTOs, exceptions
+├── Team/            # Team entity, controller, service, repo, exceptions
+├── Match/           # Match entity, controller, service, repo, exceptions
+└── Scoreboard/      # Scoreboard controller and DTO projection
+```

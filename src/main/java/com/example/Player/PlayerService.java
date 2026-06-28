@@ -25,10 +25,6 @@ public class PlayerService {
     }
 
     public ResponseEntity<String> addPlayer(Player player) {
-        if(playerRepository.existsById(player.getPlayerId())){
-            throw new Pla
-
-        }
         playerRepository.save(player);
         return ResponseEntity.ok().body("Player added successfully. Assigned Id: "+player.getPlayerId());
     }

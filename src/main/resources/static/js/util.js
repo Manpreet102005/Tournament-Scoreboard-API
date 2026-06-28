@@ -1,5 +1,5 @@
 const BASE_URL = window.location.hostname === "localhost"
-  ? "http://localhost:8081"
+  ? "http://localhost:8080"
   : "https://tournament-scoreboard-application.up.railway.app";
   
 async function fetchData(url,paginated=false,page=0,size=9) {

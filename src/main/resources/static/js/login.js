@@ -31,9 +31,10 @@ submit.addEventListener("click",async ()=>{
     if(login.classList.contains("active")){
         mode="login"
     }
+    try{
     if(mode==="register"){
         const allowed = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        if(username.value.length<6 || username.value.length>20){
+        if(username.value.length<6 ||username.value.length>20){
             message.textContent="Username must be 6-20 characters";
             return;
         }
@@ -48,7 +49,6 @@ submit.addEventListener("click",async ()=>{
             }
         }
     }
-    try{
         const response=await fetch(`${BASE_URL}/auth/${mode}`,{
             method:"POST",
             headers:{"content-type":"application/json"},
@@ -57,10 +57,10 @@ submit.addEventListener("click",async ()=>{
     
     if(mode=="login"){
         const data= await response.json();
-        localStorage.setItem("accessToken",data.accessToken);
-        localStorage.setItem("refreshToken",data.refreshToken);
-        localStorage.setItem("userRole",data.userRole);
         if(response.ok){
+            localStorage.setItem("accessToken",data.accessToken);
+            localStorage.setItem("refreshToken",data.refreshToken);
+            localStorage.setItem("userRole",data.userRole);
             window.location.href = "scoreboard.html";
         }else{
             message.textContent = "Invalid username or password";
@@ -77,10 +77,12 @@ submit.addEventListener("click",async ()=>{
         login.classList.add("active");
         register.classList.remove("active");
         password.value="";
-        submit.textContent="Submit";
-        submit.disabled=false;
+        
     }
     }catch(e){
         message.textContent="Server not reachable. Try again later.";
+    }finally{
+        submit.textContent="Submit";
+        submit.disabled=false;
     }
 });

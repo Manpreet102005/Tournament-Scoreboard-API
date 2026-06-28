@@ -68,11 +68,12 @@ document.querySelectorAll(".modal-cancel").forEach((btn) => {
 
 const confirmAddTeamBtn= document.querySelector("#add-team-ok");
 confirmAddTeamBtn.addEventListener("click",async ()=>{    
-    const teamName=document.querySelector("#team-name").value; 
-    const response=await modificationRequest(`${BASE_URL}/admin/team`,"POST",{teamName});
+    const teamName=document.querySelector("#team-name");
+    const response=await modificationRequest(`${BASE_URL}/admin/team`,"POST",{teamName:teamName.value});
     const data=await response.text();
     console.log(data);
     if(response.ok){
+        teamName.value="";
         document.querySelector("#add-team-modal").style.display="none";
         init();
     }
@@ -103,10 +104,11 @@ confirmRenameTeamBtn.addEventListener("click",async ()=>{
 
 const confirmRemoveTeamBtn=document.querySelector("#remove-team-ok");
 confirmRemoveTeamBtn.addEventListener("click",async ()=>{
-    const teamId=document.querySelector("#remove-team-id").value;
-    const response=await modificationRequest(`${BASE_URL}/admin/team/${teamId}`,"DELETE");
+    const teamId=document.querySelector("#remove-team-id");
+    const response=await modificationRequest(`${BASE_URL}/admin/team/${teamId.value}`,"DELETE");
     const data=await response.text();
     if(response.ok){
+        teamId.value="";
         document.querySelector("#remove-team-modal").style.display="none";
         init();
     }

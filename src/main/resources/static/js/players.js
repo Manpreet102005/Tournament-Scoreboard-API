@@ -49,7 +49,7 @@ addPlayerBtn.addEventListener("click",()=>{
 
 const confirmAddPlayerBtn= document.querySelector("#add-player-ok");
 confirmAddPlayerBtn.addEventListener("click",async ()=>{    
-    let playerName=document.querySelector("#player-name").value;
+    const playerName=document.querySelector("#player-name").value;
     const response=await modificationRequest(`${BASE_URL}/admin/player`,"POST",{playerName});
     const data=await response.text();
 
@@ -58,7 +58,7 @@ confirmAddPlayerBtn.addEventListener("click",async ()=>{
         return;
     }
     document.querySelector("#add-player-modal").style.display="none";
-    playerName="";
+    document.querySelector("#player-name").value = "";
     init();
 })
 
@@ -69,7 +69,7 @@ deletePlayerBtn.addEventListener("click",()=>{
 
 const confirmDeletePlayerBtn=document.querySelector("#delete-player-ok");
 confirmDeletePlayerBtn.addEventListener("click",async ()=>{
-    let playerId=document.querySelector("#player-id").value;
+    const playerId=document.querySelector("#player-id").value;
     const response = await modificationRequest(`${BASE_URL}/admin/player/${playerId}`,"DELETE");
     const data=await response.text();
     if(!response.ok){
@@ -77,7 +77,7 @@ confirmDeletePlayerBtn.addEventListener("click",async ()=>{
         return;
     }
     document.querySelector("#delete-player-modal").style.display="none";
-    playerId="";
+    document.querySelector("#player-id").value = "";
     init();
 })
 

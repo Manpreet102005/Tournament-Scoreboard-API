@@ -41,19 +41,24 @@ addMatchBtn.addEventListener("click",()=>{
 })
 const confirmAddMatchBtn= document.querySelector("#add-match-ok");
 confirmAddMatchBtn.addEventListener("click",async ()=>{
-    const matchTitle=document.querySelector("#match-title").value;
-    const matchDateTime=document.querySelector("#match-date-time").value;    
-    const teamAId=document.querySelector("#team-A-id").value;
-    const teamBId=document.querySelector("#team-B-id").value;   
-    const response=await modificationRequest(`${BASE_URL}/admin/match/${teamAId}/${teamBId}`,
+    const matchTitle=document.querySelector("#match-title");
+    const matchDateTime=document.querySelector("#match-date-time");
+    const teamAId=document.querySelector("#team-A-id");
+    const teamBId=document.querySelector("#team-B-id");
+    const response=await modificationRequest(`${BASE_URL}/admin/match/${teamAId.value}/${teamBId.value}`,
         "POST",
         {
-            matchTitle:matchTitle,
-            matchDateTime:matchDateTime
+            matchTitle:matchTitle.value,
+            matchDateTime:matchDateTime.value
     });
     const data=await response.text();
     console.log(data);
     if(response.ok){
+        matchTitle.value="";
+        matchDateTime.value="";
+        teamAId.value="";
+        teamBId.value="";
+
         document.querySelector("#add-match-modal").style.display="none";
         init();
     }else{
